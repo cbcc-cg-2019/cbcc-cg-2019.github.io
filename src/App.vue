@@ -7,6 +7,7 @@
 <script>
 import Canvas from './components/Canvas'
 import helloWorld from './algorithms/hello-world'
+import bresenham from './algorithms/bresenham'
 
 export default {
   name: 'App',
@@ -20,6 +21,10 @@ export default {
 
     canvas.readMemoryBuffer(
       helloWorld(canvas.size)
+    )
+
+    canvas.readMemoryBuffer(
+      bresenham(canvas.size, [16, 16], [27, 27])
     )
   }
 }
