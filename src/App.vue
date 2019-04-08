@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Canvas from './components/Canvas'
+import Canvas from './components/playground/Canvas'
 import helloWorld from './algorithms/hello-world'
 import bresenham from './algorithms/bresenham'
 
