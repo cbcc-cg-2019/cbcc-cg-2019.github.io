@@ -1,5 +1,9 @@
 <template>
-  <footer id="rodape">Footer</footer>
+  <div class="container">
+    <footer class="footer">
+      Footer
+    </footer>
+  </div>
 </template>
 
 <script>
@@ -7,8 +11,7 @@ export default {}
 </script>
 
 <style scoped>
-#rodape {
-  bottom: 45px;
+.footer {
   position: relative;
 }
 </style>

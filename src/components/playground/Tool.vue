@@ -1,6 +1,6 @@
 <template>
-  <div @click="" class="col-4">
-    <img :src="getImgUrl(imageUrl)" width="25%">
+  <div class="col-md-6 col-xs-3">
+    <img :src="imageUrl" width="10%">
     <div>{{name}}</div>
   </div>
 </template>
@@ -8,14 +8,10 @@
 <script>
 export default {
   name: 'Tool',
+
   props: {
     name: String,
     imageUrl: String
-  },
-  methods: {
-    getImgUrl (url) {
-      return url
-    }
   }
 }
 </script>

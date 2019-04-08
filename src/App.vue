@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Playground from './components/Playground'
@@ -31,7 +31,11 @@ body {
   align-items: center;
   justify-content: center;
   width: 100vw;
-  max-height: 100vh;
-  overflow: hidden;
+  overflow-x: hidden;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
 }
 </style>

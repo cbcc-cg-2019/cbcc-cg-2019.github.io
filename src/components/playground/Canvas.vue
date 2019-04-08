@@ -10,7 +10,7 @@
 <script>
 const GRID_BG = 'white'
 const GRID_LINE = '#A0A0A0'
-const PIXEL = 15
+const PIXEL = 10
 
 export default {
   name: 'Canvas',

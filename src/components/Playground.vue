@@ -1,12 +1,15 @@
 <template>
-  <div id="playground" class="container">
-    <div class="row content-margin">
-      <div class="col-md-8 canvas">
+  <div class="container" id="playground">
+    <div class="row justify-content-center">
+      <div class="col-md-7">
         <Canvas ref="canvas"/>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-5">
         <div class="row">
-          <Tool v-for="(tool, id) of tools" :key="id" :name="tool.name" :image="tool.image"/>
+          <Tool v-for="(tool, id) of tools"
+          :key="id"
+          :name="tool.name"
+          :imageUrl="tool.imageUrl"/>
         </div>
       </div>
     </div>
@@ -29,28 +32,12 @@ export default {
   data: () => ({
     tools: [
       {
-        name: 'Tool1',
-        image: 'http://lorempixel.com/output/nightlife-q-c-200-200-5.jpg'
+        name: 'Line',
+        imageUrl: 'http://lorempixel.com/output/nightlife-q-c-200-200-5.jpg'
       },
       {
-        name: 'Tool2',
-        image: 'http://lorempixel.com/output/nightlife-q-c-200-200-5.jpg'
-      },
-      {
-        name: 'Tool3',
-        image: 'http://lorempixel.com/output/nightlife-q-c-200-200-5.jpg'
-      },
-      {
-        name: 'Tool1',
-        image: 'http://lorempixel.com/output/nightlife-q-c-200-200-5.jpg'
-      },
-      {
-        name: 'Tool2',
-        image: 'http://lorempixel.com/output/nightlife-q-c-200-200-5.jpg'
-      },
-      {
-        name: 'Tool3',
-        image: 'http://lorempixel.com/output/nightlife-q-c-200-200-5.jpg'
+        name: 'Circle',
+        imageUrl: 'http://lorempixel.com/output/nightlife-q-c-200-200-5.jpg'
       }
     ]
   }),
@@ -74,7 +61,4 @@ export default {
 </script>
 
 <style scoped>
-.content-margin {
-  margin: 100px 0px;
-}
 </style>
