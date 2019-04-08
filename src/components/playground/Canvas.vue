@@ -10,7 +10,7 @@
 <script>
 const GRID_BG = 'white'
 const GRID_LINE = '#A0A0A0'
-const PIXEL = 20
+const PIXEL = 15
 
 export default {
   name: 'Canvas',
@@ -18,12 +18,12 @@ export default {
   props: {
     height: {
       type: Number,
-      default: 640
+      default: 480
     },
 
     width: {
       type: Number,
-      default: 640
+      default: 480
     }
   },
 

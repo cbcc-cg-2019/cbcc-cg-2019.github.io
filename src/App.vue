@@ -1,36 +1,25 @@
 <template>
   <div id="app">
-    <Canvas ref="canvas"/>
+    <Navbar/>
+    <Playground/>
+    <Footer/>
   </div>
 </template>
 
 <script>
-import Canvas from './components/playground/Canvas'
-import helloWorld from './algorithms/hello-world'
-import bresenham from './algorithms/bresenham'
-import circle from './algorithms/circle'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap'
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
+import Playground from './components/Playground'
 
 export default {
   name: 'App',
 
   components: {
-    Canvas
-  },
-
-  mounted () {
-    const { canvas } = this.$refs
-
-    canvas.readMemoryBuffer(
-      helloWorld(canvas.size)
-    )
-
-    canvas.readMemoryBuffer(
-      bresenham(canvas.size, [16, 16], [27, 27])
-    )
-
-    canvas.readMemoryBuffer(
-      circle(canvas.size, [7, 21], 5)
-    )
+    Navbar,
+    Playground,
+    Footer
   }
 }
 </script>
@@ -42,7 +31,7 @@ body {
   align-items: center;
   justify-content: center;
   width: 100vw;
-  height: 100vh;
+  max-height: 100vh;
   overflow: hidden;
 }
 </style>

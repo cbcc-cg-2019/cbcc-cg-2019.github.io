@@ -1,5 +1,5 @@
 <template>
-  <div v-on:click="name = 'clicked'" class="col-4">
+  <div @click="" class="col-4">
     <img :src="getImgUrl(imageUrl)" width="25%">
     <div>{{name}}</div>
   </div>
@@ -7,17 +7,17 @@
 
 <script>
 export default {
-  name: "Tool",
+  name: 'Tool',
   props: {
     name: String,
     imageUrl: String
   },
   methods: {
-    getImgUrl(url) {
-      return url;
+    getImgUrl (url) {
+      return url
     }
   }
-};
+}
 </script>
 
 <style scoped>

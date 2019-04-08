@@ -1,13 +1,14 @@
 <template>
-  <footer id="rodape">ola</footer>
+  <footer id="rodape">Footer</footer>
 </template>
 
 <script>
-export default {};
+export default {}
 </script>
 
 <style scoped>
 #rodape {
+  bottom: 45px;
   position: relative;
 }
 </style>
