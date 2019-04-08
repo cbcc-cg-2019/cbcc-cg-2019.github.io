@@ -1,7 +1,9 @@
 <template>
-  <div class="col-md-6 col-xs-3">
-    <img :src="imageUrl" width="10%">
-    <div>{{name}}</div>
+  <div
+    @click="$emit('select-tool', name)"
+    class="col-md-6 col-xs-3">
+    <img :src="imageUrl" width="50%">
+    <div class="label">{{name}}</div>
   </div>
 </template>
 
@@ -11,10 +13,14 @@ export default {
 
   props: {
     name: String,
-    imageUrl: String
+    imageUrl: String,
+    algorithmFileUrl: String
   }
 }
 </script>
 
 <style scoped>
+.label {
+  text-align: left;
+}
 </style>

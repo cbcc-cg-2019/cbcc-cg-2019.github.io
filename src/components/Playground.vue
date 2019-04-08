@@ -7,12 +7,14 @@
       <div class="col-md-5">
         <div class="row">
           <Tool v-for="(tool, id) of tools"
+          @select-tool="currentTool = $event"
           :key="id"
           :name="tool.name"
           :imageUrl="tool.imageUrl"/>
         </div>
       </div>
     </div>
+    {{currentTool}}
   </div>
 </template>
 
@@ -33,14 +35,23 @@ export default {
     tools: [
       {
         name: 'Line',
-        imageUrl: 'http://lorempixel.com/output/nightlife-q-c-200-200-5.jpg'
+        imageUrl: 'http://lorempixel.com/output/nightlife-q-c-200-200-5.jpg',
+        algorithmFileUrl: ''
       },
       {
         name: 'Circle',
-        imageUrl: 'http://lorempixel.com/output/nightlife-q-c-200-200-5.jpg'
+        imageUrl: 'http://lorempixel.com/output/nightlife-q-c-200-200-5.jpg',
+        algorithmFileUrl: ''
       }
-    ]
+    ],
+    currentTool: ''
   }),
+
+  methods: {
+    setCurrentTool(toolName) {
+      this.currentTool = toolName
+    }
+  },
 
   mounted () {
     const { canvas } = this.$refs
