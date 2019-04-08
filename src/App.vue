@@ -8,6 +8,7 @@
 import Canvas from './components/playground/Canvas'
 import helloWorld from './algorithms/hello-world'
 import bresenham from './algorithms/bresenham'
+import circle from './algorithms/circle'
 
 export default {
   name: 'App',
@@ -25,6 +26,10 @@ export default {
 
     canvas.readMemoryBuffer(
       bresenham(canvas.size, [16, 16], [27, 27])
+    )
+
+    canvas.readMemoryBuffer(
+      circle(canvas.size, [7, 21], 5)
     )
   }
 }
