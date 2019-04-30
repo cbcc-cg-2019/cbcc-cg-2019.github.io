@@ -1,19 +1,19 @@
 <template>
-  <div class="container" id="playground">
+  <div class="container margins" id="playground">
     <div class="row">
-      <div class="col-md-9">
-        <div class="row no-gutters">
+      <div class="col-md-7">
+        <div class="row">
           <Canvas ref="canvas"/>
         </div>
       </div>
-      <div class="col-md-3">
-        <!-- <Tool
+      <div class="col-md-5">
+        <Tool
           v-for="(tool, id) of tools"
           @select-tool="currentTool = $event"
           :key="id"
           :name="tool.name"
           :imageUrl="tool.imageUrl"
-        /> -->
+        />
       </div>
     </div>
   </div>
@@ -89,7 +89,11 @@ export default {
 </script>
 
 <style scoped>
+.margins {
+  margin-top: 50px;
+}
+
 .bordered {
-  border: 2px solid red;
+  border: 1px solid red;
 }
 </style>

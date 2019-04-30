@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <Navbar/>
-    <!-- <Playground/> -->
-    <!-- <Footer/> -->
+    <Playground/>
+    <Footer/>
   </div>
 </template>
 

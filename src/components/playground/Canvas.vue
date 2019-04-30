@@ -22,7 +22,7 @@ export default {
   },
 
   data: () => ({
-    PIXEL: 10
+    PIXEL: 5
   }),
 
   computed: {

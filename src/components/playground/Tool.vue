@@ -1,7 +1,7 @@
 <template>
   <button @click="$emit('select-tool', name)" class="btn btn-default">
-    <img class="img-thumbnail" :src="imageUrl" width="50%">
-    <div class="label">{{name}}</div>
+    <img class="img-thumbnail" :src="imageUrl">
+    {{name}}
   </button>
 </template>
 
