@@ -1,20 +1,20 @@
 <template>
-  <div @click="$emit('select-tool', name)" class="bordered">
+  <button @click="$emit('select-tool', name)" class="btn btn-default">
     <img class="img-thumbnail" :src="imageUrl" width="25%">
     <div class="label">{{name}}</div>
-  </div>
+  </button>
 </template>
 
 <script>
 export default {
-  name: "Tool",
+  name: 'Tool',
 
   props: {
     name: String,
     imageUrl: String,
     algorithmFileUrl: String
   }
-};
+}
 </script>
 
 <style scoped>
