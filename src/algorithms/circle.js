@@ -1,49 +1,50 @@
-import MemoryBuffer from './memory-buffer'
-
-export default function circle (size, centerPoint, radius) {
-  const buffer = new MemoryBuffer(size)
-
-  const [centerX, centerY] = centerPoint
-
-  let x = radius
-  let y = 0
-  let p = 1 - radius
-
-  buffer.pixel(centerX - x, centerY - y)
-
-  if (radius > 0) {
-    buffer.pixel(centerX, centerY - radius)
-    buffer.pixel(x + centerX, -y + centerY)
-    buffer.pixel(y + centerX, x + centerY)
-    buffer.pixel(-y + centerX, x + centerY)
+export default class Circle {
+  constructor(buffer, color) {
+    this.buffer = buffer
+    this.color = this.buffer.addColor(color)
   }
 
-  while (x > y) {
-    y++
+  draw(centerPoint, radius) {
+    const [centerX, centerY] = centerPoint
 
-    if (p <= 0) {
-      p += 2 * y + 1
-    } else {
-      x--
-      p += 2 * y - 2 * x + 1
+    let x = radius
+    let y = 0
+    let p = 1 - radius
+
+    this.buffer.pixel(centerX - x, centerY - y, this.color)
+
+    if (radius > 0) {
+      this.buffer.pixel(centerX, centerY - radius, this.color)
+      this.buffer.pixel(x + centerX, -y + centerY, this.color)
+      this.buffer.pixel(y + centerX, x + centerY, this.color)
+      this.buffer.pixel(-y + centerX, x + centerY, this.color)
     }
 
-    if (x < y) {
-      break
-    }
+    while (x > y) {
+      y++
 
-    buffer.pixel(x + centerX, y + centerY)
-    buffer.pixel(-x + centerX, y + centerY)
-    buffer.pixel(x + centerX, -y + centerY)
-    buffer.pixel(-x + centerX, -y + centerY)
+      if (p <= 0) {
+        p += 2 * y + 1
+      } else {
+        x--
+        p += 2 * y - 2 * x + 1
+      }
 
-    if (x !== y) {
-      buffer.pixel(y + centerX, x + centerY)
-      buffer.pixel(-y + centerX, x + centerY)
-      buffer.pixel(y + centerX, -x + centerY)
-      buffer.pixel(-y + centerX, -x + centerY)
+      if (x < y) {
+        break
+      }
+
+      this.buffer.pixel(x + centerX, y + centerY, this.color)
+      this.buffer.pixel(-x + centerX, y + centerY, this.color)
+      this.buffer.pixel(x + centerX, -y + centerY, this.color)
+      this.buffer.pixel(-x + centerX, -y + centerY, this.color)
+
+      if (x !== y) {
+        this.buffer.pixel(y + centerX, x + centerY, this.color)
+        this.buffer.pixel(-y + centerX, x + centerY, this.color)
+        this.buffer.pixel(y + centerX, -x + centerY, this.color)
+        this.buffer.pixel(-y + centerX, -x + centerY, this.color)
+      }
     }
   }
-
-  return buffer
 }

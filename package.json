@@ -1,5 +1,5 @@
 {
-  "name": "ufpa-cg-2019",
+  "name": "ufpa-cg-2019-guilherme",
   "version": "1.0.0",
   "description": "A Vue.js project",
   "author": "lubien <lubien1996@gmail.com>",
@@ -11,6 +11,9 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "bootstrap": "4.3.1",
+    "jquery": "3.4.0",
+    "popper.js": "1.15.0",
     "vue": "^2.5.2"
   },
   "devDependencies": {
@@ -71,5 +74,6 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "keywords": []
 }
