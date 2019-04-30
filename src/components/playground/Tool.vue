@@ -1,6 +1,6 @@
 <template>
-  <div @click="$emit('select-tool', name)" class="padder bordered">
-    <img class="img-fluid" :src="imageUrl" width="25%">
+  <div @click="$emit('select-tool', name)" class="bordered">
+    <img class="img-thumbnail" :src="imageUrl" width="25%">
     <div class="label">{{name}}</div>
   </div>
 </template>
@@ -24,9 +24,5 @@ export default {
 
 .bordered {
   border: 2px solid red;
-}
-
-.padder {
-  padding: 3px 5px;
 }
 </style>

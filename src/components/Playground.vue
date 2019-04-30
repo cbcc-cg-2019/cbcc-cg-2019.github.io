@@ -1,24 +1,21 @@
 <template>
   <div class="container" id="playground">
-    <div class="row justify-content-center no-gutters">
+    <div class="row">
       <div class="col-md-9">
         <div class="row no-gutters">
           <Canvas ref="canvas"/>
         </div>
       </div>
-      <!-- <div class="col-md-3 bordered">
-        <div class="row no-gutters">
-          <Tool
-            v-for="(tool, id) of tools"
-            @select-tool="currentTool = $event"
-            :key="id"
-            :name="tool.name"
-            :imageUrl="tool.imageUrl"
-          />
-        </div>
-      </div>-->
+      <div class="col-md-3 bordered">
+        <Tool
+          v-for="(tool, id) of tools"
+          @select-tool="currentTool = $event"
+          :key="id"
+          :name="tool.name"
+          :imageUrl="tool.imageUrl"
+        />
+      </div>
     </div>
-    {{currentTool}}
   </div>
 </template>
 
@@ -42,22 +39,22 @@ export default {
     tools: [
       {
         name: 'Line',
-        imageUrl: 'http://lorempixel.com/output/nightlife-q-c-200-200-5.jpg',
+        imageUrl: 'http://lorempixel.com/output/abstract-q-c-16-16-5.jpg',
         algorithmFileUrl: ''
       },
       {
         name: 'Circle',
-        imageUrl: 'http://lorempixel.com/output/nightlife-q-c-200-200-5.jpg',
+        imageUrl: 'http://lorempixel.com/output/abstract-q-c-16-16-5.jpg',
         algorithmFileUrl: ''
       },
       {
         name: 'Line',
-        imageUrl: 'http://lorempixel.com/output/nightlife-q-c-200-200-5.jpg',
+        imageUrl: 'http://lorempixel.com/output/abstract-q-c-16-16-5.jpg',
         algorithmFileUrl: ''
       },
       {
         name: 'Circle',
-        imageUrl: 'http://lorempixel.com/output/nightlife-q-c-200-200-5.jpg',
+        imageUrl: 'http://lorempixel.com/output/abstract-q-c-16-16-5.jpg',
         algorithmFileUrl: ''
       }
     ],
