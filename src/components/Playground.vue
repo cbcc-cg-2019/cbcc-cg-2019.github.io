@@ -7,13 +7,13 @@
         </div>
       </div>
       <div class="col-md-3">
-        <Tool
+        <!-- <Tool
           v-for="(tool, id) of tools"
           @select-tool="currentTool = $event"
           :key="id"
           :name="tool.name"
           :imageUrl="tool.imageUrl"
-        />
+        /> -->
       </div>
     </div>
   </div>

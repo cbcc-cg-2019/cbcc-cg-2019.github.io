@@ -1,6 +1,6 @@
 <template>
   <button @click="$emit('select-tool', name)" class="btn btn-default">
-    <img class="img-thumbnail" :src="imageUrl" width="25%">
+    <img class="img-thumbnail" :src="imageUrl" width="50%">
     <div class="label">{{name}}</div>
   </button>
 </template>
@@ -20,9 +20,5 @@ export default {
 <style scoped>
 .label {
   text-align: left;
-}
-
-.bordered {
-  border: 2px solid red;
 }
 </style>

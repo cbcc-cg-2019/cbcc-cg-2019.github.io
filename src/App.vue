@@ -1,27 +1,27 @@
 <template>
   <div id="app">
     <Navbar/>
-    <Playground/>
+    <!-- <Playground/> -->
     <!-- <Footer/> -->
   </div>
 </template>
 
 <script>
-import "bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import Playground from "./components/Playground";
+import 'bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
+import Playground from './components/Playground'
 
 export default {
-  name: "App",
+  name: 'App',
 
   components: {
     Navbar,
     Playground,
     Footer
   }
-};
+}
 </script>
 
 <style>
