@@ -1,10 +1,8 @@
 <template>
-  <div
-    @click="$emit('select-tool', name)"
-    class="col-md-6 col-xs-3">
-    <img :src="imageUrl" width="50%">
+  <button @click="$emit('select-tool', name)" class="btn btn-default">
+    <img class="img-thumbnail" :src="imageUrl" width="50%">
     <div class="label">{{name}}</div>
-  </div>
+  </button>
 </template>
 
 <script>
