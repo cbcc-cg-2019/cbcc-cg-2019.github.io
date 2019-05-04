@@ -81,7 +81,7 @@ export default {
 
     const line = new Line(this.buffer, '#cdcf7f', {
       fromPoint: [45, 15],
-      toPoint: [10, 41],
+      toPoint: [10, 41]
     })
     this.zBuffer.push(line)
 
@@ -112,10 +112,6 @@ export default {
 <style scoped>
 .margins {
   margin-top: 50px;
-}
-
-#playground {
-  display: table;
 }
 
 .bordered {
