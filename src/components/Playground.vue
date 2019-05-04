@@ -92,10 +92,10 @@ export default {
     this.zBuffer.push(flood)
 
     const clipper = new CohenSutherland({
-      xmax: 41,
+      xmax: 40,
       ymax: 39,
-      xmin: 12,
-      ymin: 21
+      xmin: 11,
+      ymin: 24
     })
 
     const newLine = clipper.clip(line.getLine())
