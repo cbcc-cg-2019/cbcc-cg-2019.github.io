@@ -18,14 +18,15 @@ export default class CohenSutherland {
     return code
   }
 
-  clip(x1, y1, x2, y2) {
+  clip(linePts) {
+    let [[x1, y1], [x2, y2]] = linePts
     let c1 = this._mkcode(x1, y1)
     let c2 = this._mkcode(x2, y2)
 
     while (true) {
       if (c1 === 0 && c2 === 0) {
         //trivially accepted
-        return [[x1, y1], [x2, y2]]
+        return [[x1, y1].map(Math.round), [x2, y2].map(Math.round)]
       } else if (c1 & c2) {
         //trivially rejected
         return null
