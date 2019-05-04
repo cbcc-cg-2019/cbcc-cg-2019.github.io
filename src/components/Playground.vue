@@ -26,6 +26,7 @@ import Line from '../algorithms/bresenham'
 import CohenSutherland from '../algorithms/csclip'
 import MemoryBuffer from '../algorithms/memory-buffer'
 import FloodFill from '../algorithms/floodfill'
+import Utils from '../algorithms/utils'
 
 export default {
   name: 'Playground',
@@ -91,13 +92,17 @@ export default {
     this.zBuffer.push(flood)
 
     const clipper = new CohenSutherland({
-      xmax: 40,
-      ymax: 30,
-      xmin: 10,
-      ymin: 40
+      xmax: 41,
+      ymax: 39,
+      xmin: 12,
+      ymin: 21
     })
 
-    // this.zBuffer.indexOf
+    const newLine = clipper.clip(line.getLine())
+    Utils.arrayReplace(this.zBuffer, line, new Line(this.buffer, '#cdcf7f', {
+      fromPoint: newLine[0],
+      toPoint: newLine[1]
+    }))
   },
 
   watch: {

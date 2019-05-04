@@ -26,4 +26,20 @@ export default class Utils {
     }
     return out
   }
+
+  /**
+   * Replaces in given array an old item
+   * by a new one
+   * @param {Array} array
+   * @param {*} oldItem
+   * @param {*} newItem
+   * @throws an error if there is no such
+   * oldItem in the given array
+   */
+  static arrayReplace(array, oldItem, newItem) {
+    if(!array.includes(oldItem))
+      throw new Error('there is no such oldItem in the given array')
+    const idx = array.indexOf(oldItem)
+    array[idx] = newItem
+  }
 }

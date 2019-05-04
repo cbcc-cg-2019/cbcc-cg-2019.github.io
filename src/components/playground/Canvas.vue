@@ -1,5 +1,5 @@
 <template>
-  <canvas ref="canvas" id="canvas" :width="width" :height="height"></canvas>
+  <canvas ref="canvas" @click="getClick" id="canvas" :width="width" :height="height"></canvas>
 </template>
 
 <script>
@@ -22,7 +22,7 @@ export default {
   },
 
   data: () => ({
-    PIXEL: 5
+    PIXEL: 10
   }),
 
   computed: {
@@ -79,6 +79,14 @@ export default {
           }
         }
       }
+    },
+
+    getClick(e) {
+      const rect = this.$refs.canvas.getBoundingClientRect()
+      const factor = this.size / rect.width
+      const x = e.offsetX * factor
+      const y = e.offsetY * factor
+      console.log(Math.floor(x), Math.floor(y))
     }
   }
 }
