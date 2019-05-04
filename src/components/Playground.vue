@@ -26,7 +26,7 @@ import Line from '../algorithms/bresenham'
 import CohenSutherland from '../algorithms/csclip'
 import MemoryBuffer from '../algorithms/memory-buffer'
 import FloodFill from '../algorithms/floodfill'
-import Utils from '../algorithms/utils'
+import { arrayReplace } from '../algorithms/utils'
 
 export default {
   name: 'Playground',
@@ -50,14 +50,14 @@ export default {
   }),
 
   methods: {
-    setCurrentTool(toolName) {
+    setCurrentTool (toolName) {
       this.currentTool = toolName
     }
 
-    //onClickPixel (shape. x. y)
+    // onClickPixel (shape. x. y)
   },
 
-  mounted() {
+  mounted () {
     this.canvas = this.$refs.canvas
     this.buffer = new MemoryBuffer(this.canvas.size)
 
@@ -99,14 +99,14 @@ export default {
     })
 
     const newLine = clipper.clip(line.getLine())
-    Utils.arrayReplace(this.zBuffer, line, new Line(this.buffer, '#cdcf7f', {
+    arrayReplace(this.zBuffer, line, new Line(this.buffer, '#cdcf7f', {
       fromPoint: newLine[0],
       toPoint: newLine[1]
     }))
   },
 
   watch: {
-    zBuffer: function() {
+    zBuffer: function () {
       this.zBuffer.forEach(shape => shape.draw())
       this.canvas.readMemoryBuffer(this.buffer)
     }

@@ -6,13 +6,13 @@
  * @returns {Number[][]} A new matrix c (mxq-matrix) if n === p
  * @returns null otherwise
  */
-export function matrixMult(a, b) {
-  const m = a.length,
-    n = a[0].length,
-    p = b.length,
-    q = b[0].length
+export function matrixMult (a, b) {
+  const m = a.length
+  const n = a[0].length
+  const p = b.length
+  const q = b[0].length
 
-  //q cannot be a 1xn-vector
+  // q cannot be a 1xn-vector
   if (!q | (n !== p)) throw new Error('Cannot multiply such matrices')
   const out = new Array(m)
 
@@ -34,7 +34,7 @@ export function matrixMult(a, b) {
  * @param {Number[]} v
  * @returns new transposed vector
  */
-export function vectorTranspose(v) {
+export function vectorTranspose (v) {
   const out = []
   v.forEach(n => out.push([n]))
   return out
@@ -46,7 +46,7 @@ export function vectorTranspose(v) {
  * @param {Number[]} v
  * @returns new transposed vector
  */
-export function vectorTransposeInv(v) {
+export function vectorTransposeInv (v) {
   const out = []
   v.forEach(n => {
     const [value] = n
@@ -64,9 +64,10 @@ export function vectorTransposeInv(v) {
  * @throws an error if there is no such
  * oldItem in the given array
  */
-export function arrayReplace(array, oldItem, newItem) {
-  if (!array.includes(oldItem))
+export function arrayReplace (array, oldItem, newItem) {
+  if (!array.includes(oldItem)) {
     throw new Error('there is no such oldItem in the given array')
+  }
   const idx = array.indexOf(oldItem)
   array[idx] = newItem
 }

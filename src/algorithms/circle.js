@@ -1,11 +1,11 @@
 export default class Circle {
-  constructor(buffer, color, { centerPoint, radius }) {
+  constructor (buffer, color, { centerPoint, radius }) {
     Object.assign(this, { centerPoint, radius })
     this.buffer = buffer
     this.color = this.buffer.addColor(color)
   }
 
-  draw() {
+  draw () {
     const [centerX, centerY] = this.centerPoint
 
     let x = this.radius

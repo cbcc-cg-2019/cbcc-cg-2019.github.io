@@ -1,7 +1,7 @@
 const EMPTY = 0
 
 export default class MemoryBuffer {
-  constructor(size) {
+  constructor (size) {
     const length = size
 
     this.grid = Array.from({ length }, () =>
@@ -10,7 +10,7 @@ export default class MemoryBuffer {
 
     this.ctr = 0
 
-    //Colors pool
+    // Colors pool
     this.colors = [
       // { example:
       //   id: 1,
@@ -23,7 +23,7 @@ export default class MemoryBuffer {
    * Returns a color's id in colors pool
    * @param {string} color A hexadecimal color
    */
-  addColor(color) {
+  addColor (color) {
     const foundColor = this.colors.find(c => c.colorText === color)
     if (foundColor) return foundColor.id
     else {
@@ -39,24 +39,24 @@ export default class MemoryBuffer {
    * Returns color hexadecimal text in colors pool by id
    * @param {number} id
    */
-  getColorById(id) {
+  getColorById (id) {
     const foundColor = this.colors.find(c => c.id === id)
     return foundColor ? foundColor.colorText : 0
   }
 
-  pixel(x, y, colorId) {
+  pixel (x, y, colorId) {
     this.grid[y][x] = colorId
   }
 
-  clean(x, y) {
+  clean (x, y) {
     this.grid[y][x] = EMPTY
   }
 
-  isPainted(x, y) {
+  isPainted (x, y) {
     return this.grid[y][x] > 0
   }
 
-  toArray() {
+  toArray () {
     // clone
     return this.grid.map(row => row.concat())
   }

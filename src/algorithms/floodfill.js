@@ -1,22 +1,21 @@
 export default class FloodFill {
-  constructor(buffer, color, { initPoint }) {
+  constructor (buffer, color, { initPoint }) {
     Object.assign(this, { initPoint })
     this.buffer = buffer
     this.color = buffer.addColor(color)
   }
 
-  setColor(color) {
+  setColor (color) {
     this.color = this.buffer.addColor(color)
   }
 
-  _fill([x, y]) {
+  _fill ([x, y]) {
     if (
       x < 0 ||
       x >= this.buffer.grid.length ||
       y < 0 ||
       y >= this.buffer.grid.length
-    )
-      return
+    ) return
 
     if (!this.buffer.isPainted(x, y)) {
       this.buffer.pixel(x, y, this.color)
@@ -27,7 +26,7 @@ export default class FloodFill {
     }
   }
 
-  draw() {
+  draw () {
     this._fill(this.initPoint)
   }
 }
