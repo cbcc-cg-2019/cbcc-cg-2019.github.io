@@ -56,17 +56,6 @@ export default class MemoryBuffer {
     return this.grid[y][x] > 0
   }
 
-  bufCopy(cpBuffer) {
-    const buffer = cpBuffer.toArray()
-    for (let y = 0; y < buffer.length; y++) {
-      for (let x = 0; x < buffer.length; x++) {
-        if (buffer[y][x]) {
-          this.pixel(x, y)
-        }
-      }
-    }
-  }
-
   toArray() {
     // clone
     return this.grid.map(row => row.concat())

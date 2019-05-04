@@ -31,12 +31,17 @@ body {
   align-items: center;
   justify-content: center;
   width: 100vw;
-  overflow-x: hidden;
 }
 
 html,
 body {
-  height: 100%;
+  height: 100vh;
   margin: 0;
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
 }
 </style>

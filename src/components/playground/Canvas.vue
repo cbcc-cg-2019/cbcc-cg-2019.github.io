@@ -83,3 +83,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+canvas {
+  width: 100%;
+  height: auto;
+}
+</style>

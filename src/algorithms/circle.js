@@ -1,20 +1,21 @@
 export default class Circle {
-  constructor(buffer, color) {
+  constructor(buffer, color, { centerPoint, radius }) {
+    Object.assign(this, { centerPoint, radius })
     this.buffer = buffer
     this.color = this.buffer.addColor(color)
   }
 
-  draw(centerPoint, radius) {
-    const [centerX, centerY] = centerPoint
+  draw() {
+    const [centerX, centerY] = this.centerPoint
 
-    let x = radius
+    let x = this.radius
     let y = 0
-    let p = 1 - radius
+    let p = 1 - this.radius
 
     this.buffer.pixel(centerX - x, centerY - y, this.color)
 
-    if (radius > 0) {
-      this.buffer.pixel(centerX, centerY - radius, this.color)
+    if (this.radius > 0) {
+      this.buffer.pixel(centerX, centerY - this.radius, this.color)
       this.buffer.pixel(x + centerX, -y + centerY, this.color)
       this.buffer.pixel(y + centerX, x + centerY, this.color)
       this.buffer.pixel(-y + centerX, x + centerY, this.color)
