@@ -76,4 +76,8 @@ export default class Line {
       this.buffer.pixel(x, y, this.color)
     }
   }
+
+  getLine() {
+    return [this.fromPoint, this.toPoint]
+  }
 }

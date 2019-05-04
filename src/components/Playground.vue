@@ -23,8 +23,10 @@ import Tool from './playground/Tool'
 import Circle from '../algorithms/circle'
 import Ellipse from '../algorithms/ellipse'
 import Line from '../algorithms/bresenham'
+import CohenSutherland from '../algorithms/csclip'
 import MemoryBuffer from '../algorithms/memory-buffer'
 import FloodFill from '../algorithms/floodfill'
+import Utils from '../algorithms/utils'
 
 export default {
   name: 'Playground',
@@ -79,8 +81,8 @@ export default {
     this.zBuffer.push(circle2)
 
     const line = new Line(this.buffer, '#cdcf7f', {
-      toPoint: [10, 41],
-      fromPoint: [45, 15]
+      fromPoint: [45, 15],
+      toPoint: [10, 41]
     })
     this.zBuffer.push(line)
 
@@ -88,12 +90,24 @@ export default {
       initPoint: [25, 35]
     })
     this.zBuffer.push(flood)
+
+    const clipper = new CohenSutherland({
+      xmax: 41,
+      ymax: 39,
+      xmin: 12,
+      ymin: 21
+    })
+
+    const newLine = clipper.clip(line.getLine())
+    Utils.arrayReplace(this.zBuffer, line, new Line(this.buffer, '#cdcf7f', {
+      fromPoint: newLine[0],
+      toPoint: newLine[1]
+    }))
   },
 
   watch: {
     zBuffer: function() {
       this.zBuffer.forEach(shape => shape.draw())
-      console.log(JSON.stringify(this.buffer))
       this.canvas.readMemoryBuffer(this.buffer)
     }
   }
@@ -103,10 +117,6 @@ export default {
 <style scoped>
 .margins {
   margin-top: 50px;
-}
-
-#playground {
-  display: table;
 }
 
 .bordered {
