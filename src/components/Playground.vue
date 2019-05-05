@@ -28,6 +28,7 @@ import MemoryBuffer from '../algorithms/memory-buffer'
 import FloodFill from '../algorithms/floodfill'
 import { arrayReplace } from '../algorithms/utils'
 import { rotate2d } from '../algorithms/transform'
+import ScanLineFill from '../algorithms/scan-line-fill'
 
 export default {
   name: 'Playground',
@@ -91,6 +92,57 @@ export default {
       initPoint: [25, 35]
     })
     this.zBuffer.push(flood)
+
+    // generate rect for scanline
+    const rectBuffer = new MemoryBuffer(this.canvas.size)
+    const rectPoints = [
+      [25, 2],
+      [25, 12],
+      [35, 12],
+      [35, 2]
+    ]
+    const rectLines = rectPoints.map(([x1, y1], i) => {
+      const [x2, y2] = rectPoints[(i + 1) % 4]
+
+      const line = new Line(rectBuffer, '#cdcf7f', {
+        fromPoint: [x1, y1],
+        toPoint: [x2, y2]
+      })
+
+      line.draw()
+
+      return line
+    })
+    this.canvas.readMemoryBuffer(rectBuffer)
+
+    const scanlinefill = new ScanLineFill(this.buffer, rectBuffer, '#cd4001')
+    this.zBuffer.push(scanlinefill)
+
+    // generate polygon for scanline
+    const polygonBuffer = new MemoryBuffer(this.canvas.size)
+    const polygonPoints = [
+      [40, 46],
+      [48, 49],
+      [52, 44],
+      [53, 52],
+      [41, 52]
+    ]
+    const polygonLines = polygonPoints.map(([x1, y1], i) => {
+      const [x2, y2] = polygonPoints[(i + 1) % 5]
+
+      const line = new Line(polygonBuffer, '#cdcf7f', {
+        fromPoint: [x1, y1],
+        toPoint: [x2, y2]
+      })
+
+      line.draw()
+
+      return line
+    })
+    this.canvas.readMemoryBuffer(polygonBuffer)
+
+    const scanlinefill2 = new ScanLineFill(this.buffer, polygonBuffer, '#cd4001')
+    this.zBuffer.push(scanlinefill2)
 
     const clipper = new CohenSutherland({
       xmax: 40,

@@ -114,3 +114,57 @@ export function lineSlope ([x1, y1], [x2, y2]) {
 
   return dy / dx
 }
+
+export function getBounds (grid) {
+  let xMin = +Infinity
+  let yMin = +Infinity
+  let xMax = -1
+  let yMax = -1
+
+  for (let i = 0; i < grid.length; i++) {
+    const row = grid[i]
+
+    const currentY = i
+
+    for (let j = 0; j < row.length; j++) {
+      const element = row[j]
+      const currentX = j
+
+      if (element === 0) {
+        continue
+      }
+
+      yMin = Math.min(yMin, currentY)
+      yMax = Math.max(yMax, currentY)
+      xMin = Math.min(xMin, currentX)
+      xMax = Math.max(xMax, currentX)
+    }
+  }
+
+  if (xMin === +Infinity || yMin === +Infinity || xMax === -1 || yMax === -1) {
+    throw new Error('Invalid shape to get bounds')
+  }
+
+  return {
+    xMin, yMin, xMax, yMax
+  }
+}
+
+export function groupEachTwo (xs) {
+  // const length = xs.length / 2
+
+  // return Array.from({ length }, (_, i) =>
+  //   [
+  //     xs[i * 2],
+  //     xs[(i * 2) + 1]
+  //   ]
+  // )
+  const length = xs.length - 1
+
+  return Array.from({ length }, (_, i) =>
+    [
+      xs[i],
+      xs[i + 1]
+    ]
+  )
+}
