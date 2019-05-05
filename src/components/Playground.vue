@@ -27,6 +27,7 @@ import CohenSutherland from '../algorithms/csclip'
 import MemoryBuffer from '../algorithms/memory-buffer'
 import FloodFill from '../algorithms/floodfill'
 import { arrayReplace } from '../algorithms/utils'
+import { rotate2d } from '../algorithms/transform'
 
 export default {
   name: 'Playground',
@@ -98,11 +99,22 @@ export default {
       ymin: 24
     })
 
-    const newLine = clipper.clip(line.getLine())
-    arrayReplace(this.zBuffer, line, new Line(this.buffer, '#cdcf7f', {
-      fromPoint: newLine[0],
-      toPoint: newLine[1]
-    }))
+    const newLinePts = clipper.clip(line.getLine())
+    const newLine = new Line(this.buffer, '#cdcf7f', {
+      fromPoint: newLinePts[0],
+      toPoint: newLinePts[1]
+    })
+    arrayReplace(this.zBuffer, line, newLine)
+
+    let newLinePts2 = newLine.getLine()
+    const [x, y] = newLinePts2[0]
+    newLinePts2 = newLinePts2.map(pt => rotate2d(pt, [x, y], 15))
+    console.log(JSON.stringify(newLinePts2))
+    const newLine2 = new Line(this.buffer, '#e4e4e4', {
+      fromPoint: newLinePts2[0],
+      toPoint: newLinePts2[1]
+    })
+    this.zBuffer.push(newLine2)
   },
 
   watch: {
