@@ -26,8 +26,8 @@ import Line from '../algorithms/bresenham'
 import CohenSutherland from '../algorithms/csclip'
 import MemoryBuffer from '../algorithms/memory-buffer'
 import FloodFill from '../algorithms/floodfill'
-import { arrayReplace } from '../algorithms/utils'
-import { rotate2d } from '../algorithms/transform'
+import { arrayReplace, randomHexColor } from '../algorithms/utils'
+import { translate2d, rotate2d, scale2d } from '../algorithms/transform'
 import ScanLineFill from '../algorithms/scan-line-fill'
 
 export default {
@@ -161,12 +161,27 @@ export default {
     let newLinePts2 = newLine.getLine()
     const [x, y] = newLinePts2[0]
     newLinePts2 = newLinePts2.map(pt => rotate2d(pt, [x, y], 15))
-    console.log(JSON.stringify(newLinePts2))
     const newLine2 = new Line(this.buffer, '#e4e4e4', {
       fromPoint: newLinePts2[0],
       toPoint: newLinePts2[1]
     })
     this.zBuffer.push(newLine2)
+
+    // translation
+    const translation = [10, 10]
+    const translatedLine = new Line(this.buffer, randomHexColor(), {
+      fromPoint: translate2d([0, 20], translation),
+      toPoint: translate2d([20, 0], translation)
+    })
+    this.zBuffer.push(translatedLine)
+
+    // scale line
+    const scale = [1.5, 1.5]
+    const scaledLine = new Line(this.buffer, randomHexColor(), {
+      fromPoint: scale2d([0, 20], scale),
+      toPoint: scale2d([20, 0], scale)
+    })
+    this.zBuffer.push(scaledLine)
   },
 
   watch: {

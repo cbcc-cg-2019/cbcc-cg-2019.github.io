@@ -168,3 +168,8 @@ export function groupEachTwo (xs) {
     ]
   )
 }
+
+// Source: http://disq.us/p/d0itcq
+export function randomHexColor () {
+  return `#${Math.random().toString(16).slice(2, 8)}`
+}
