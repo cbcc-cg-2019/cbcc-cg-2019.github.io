@@ -1,6 +1,5 @@
 import {
-  getBounds,
-  groupEachTwo
+  getBounds
 } from './utils'
 
 export default class ScanLineFill {

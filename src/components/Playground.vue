@@ -28,7 +28,9 @@ import MemoryBuffer from '../algorithms/memory-buffer'
 import FloodFill from '../algorithms/floodfill'
 import { arrayReplace, randomHexColor } from '../algorithms/utils'
 import { translate2d, rotate2d, scale2d } from '../algorithms/transform'
+import { orthographicXY } from '../algorithms/projections'
 import ScanLineFill from '../algorithms/scan-line-fill'
+import MidpointClip from '../algorithms/mpclip'
 
 export default {
   name: 'Playground',
@@ -93,62 +95,62 @@ export default {
     })
     this.zBuffer.push(flood)
 
-    // generate rect for scanline
-    const rectBuffer = new MemoryBuffer(this.canvas.size)
-    const rectPoints = [
-      [25, 2],
-      [25, 12],
-      [35, 12],
-      [35, 2]
-    ]
-    const rectLines = rectPoints.map(([x1, y1], i) => {
-      const [x2, y2] = rectPoints[(i + 1) % 4]
+    // // generate rect for scanline
+    // const rectBuffer = new MemoryBuffer(this.canvas.size)
+    // const rectPoints = [
+    //   [25, 2],
+    //   [25, 12],
+    //   [35, 12],
+    //   [35, 2]
+    // ]
+    // const rectLines = rectPoints.map(([x1, y1], i) => {
+    // const [x2, y2] = rectPoints[(i + 1) % 4]
 
-      const line = new Line(rectBuffer, '#cdcf7f', {
-        fromPoint: [x1, y1],
-        toPoint: [x2, y2]
-      })
+    //   const line = new Line(rectBuffer, '#cdcf7f', {
+    //     fromPoint: [x1, y1],
+    //     toPoint: [x2, y2]
+    //   })
 
-      line.draw()
+    //   line.draw()
 
-      return line
-    })
-    this.canvas.readMemoryBuffer(rectBuffer)
+    //   return line
+    // })
+    // this.canvas.readMemoryBuffer(rectBuffer)
 
-    const scanlinefill = new ScanLineFill(this.buffer, rectBuffer, '#cd4001')
-    this.zBuffer.push(scanlinefill)
+    // const scanlinefill = new ScanLineFill(this.buffer, rectBuffer, '#cd4001')
+    // this.zBuffer.push(scanlinefill)
 
-    // generate polygon for scanline
-    const polygonBuffer = new MemoryBuffer(this.canvas.size)
-    const polygonPoints = [
-      [40, 46],
-      [48, 49],
-      [52, 44],
-      [53, 52],
-      [41, 52]
-    ]
-    const polygonLines = polygonPoints.map(([x1, y1], i) => {
-      const [x2, y2] = polygonPoints[(i + 1) % 5]
+    // // generate polygon for scanline
+    // const polygonBuffer = new MemoryBuffer(this.canvas.size)
+    // const polygonPoints = [
+    //   [40, 46],
+    //   [48, 49],
+    //   [52, 44],
+    //   [53, 52],
+    //   [41, 52]
+    // ]
+    // const polygonLines = polygonPoints.map(([x1, y1], i) => {
+    // const [x2, y2] = polygonPoints[(i + 1) % 5]
 
-      const line = new Line(polygonBuffer, '#cdcf7f', {
-        fromPoint: [x1, y1],
-        toPoint: [x2, y2]
-      })
+    //   const line = new Line(polygonBuffer, '#cdcf7f', {
+    //     fromPoint: [x1, y1],
+    //     toPoint: [x2, y2]
+    //   })
 
-      line.draw()
+    //   line.draw()
 
-      return line
-    })
-    this.canvas.readMemoryBuffer(polygonBuffer)
+    //   return line
+    // })
+    // this.canvas.readMemoryBuffer(polygonBuffer)
 
-    const scanlinefill2 = new ScanLineFill(this.buffer, polygonBuffer, '#cd4001')
-    this.zBuffer.push(scanlinefill2)
+    // const scanlinefill2 = new ScanLineFill(this.buffer, polygonBuffer, '#cd4001')
+    // this.zBuffer.push(scanlinefill2)
 
     const clipper = new CohenSutherland({
-      xmax: 40,
-      ymax: 39,
-      xmin: 11,
-      ymin: 24
+      xmax: 41,
+      ymax: 42,
+      xmin: 13,
+      ymin: 20
     })
 
     const newLinePts = clipper.clip(line.getLine())
@@ -158,30 +160,39 @@ export default {
     })
     arrayReplace(this.zBuffer, line, newLine)
 
-    let newLinePts2 = newLine.getLine()
-    const [x, y] = newLinePts2[0]
-    newLinePts2 = newLinePts2.map(pt => rotate2d(pt, [x, y], 15))
-    const newLine2 = new Line(this.buffer, '#e4e4e4', {
-      fromPoint: newLinePts2[0],
-      toPoint: newLinePts2[1]
-    })
-    this.zBuffer.push(newLine2)
+    // let newLinePts2 = newLine.getLine()
+    // const [x, y] = newLinePts2[0]
+    // newLinePts2 = newLinePts2.map(pt => rotate2d(pt, [x, y], 15))
+    // const newLine2 = new Line(this.buffer, '#e4e4e4', {
+    //   fromPoint: newLinePts2[0],
+    //   toPoint: newLinePts2[1]
+    // })
+    // this.zBuffer.push(newLine2)
 
-    // translation
-    const translation = [10, 10]
-    const translatedLine = new Line(this.buffer, randomHexColor(), {
-      fromPoint: translate2d([0, 20], translation),
-      toPoint: translate2d([20, 0], translation)
-    })
-    this.zBuffer.push(translatedLine)
+    // // translation
+    // const translation = [10, 10]
+    // const translatedLine = new Line(this.buffer, randomHexColor(), {
+    //   fromPoint: translate2d([0, 20], translation),
+    //   toPoint: translate2d([20, 0], translation)
+    // })
+    // this.zBuffer.push(translatedLine)
 
-    // scale line
-    const scale = [1.5, 1.5]
-    const scaledLine = new Line(this.buffer, randomHexColor(), {
-      fromPoint: scale2d([0, 20], scale),
-      toPoint: scale2d([20, 0], scale)
+    // // scale line
+    // const scale = [1.5, 1.5]
+    // const scaledLine = new Line(this.buffer, randomHexColor(), {
+    //   fromPoint: scale2d([0, 20], scale),
+    //   toPoint: scale2d([20, 0], scale)
+    // })
+    // this.zBuffer.push(scaledLine)
+
+    const line3d = [[0, 0, 0, 1], [2, 2, 2, 1]]
+    const projLinePts = line3d.map(point => orthographicXY(point).slice(0, 2))
+    console.log(projLinePts)
+    const projLine = new Line(this.buffer, '#e4e4e4', {
+      fromPoint: projLinePts[0],
+      toPoint: projLinePts[1]
     })
-    this.zBuffer.push(scaledLine)
+    this.zBuffer.push(projLine)
   },
 
   watch: {

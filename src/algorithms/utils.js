@@ -29,6 +29,16 @@ export function matrixMult (a, b) {
 }
 
 /**
+ * Reduces the list of matrices into a
+ * exaustive-multiplication matrix
+ * @param {Number[][][]} mtxl
+ * @returns {Number[][]} a new matrix
+ */
+export function mtxMultList (mtxl) {
+  return mtxl.reduce((pmtx, cmtx) => matrixMult(pmtx, cmtx))
+}
+
+/**
  * Transposes 1xn-vector to nx1-vector
  * Example: [1, 2, 3, ...] -> [[1], [2], [3], ...]
  * @param {Number[]} v
@@ -71,6 +81,9 @@ export function arrayReplace (array, oldItem, newItem) {
   const idx = array.indexOf(oldItem)
   array[idx] = newItem
 }
+
+export const cos = x => Math.cos(x * Math.PI / 180)
+export const sin = x => Math.sin(x * Math.PI / 180)
 
 export function negate (x) {
   return -x
